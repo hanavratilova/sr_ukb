@@ -1,0 +1,45 @@
+#subset dataset for complete obvservation of variables
+ration_brain_SEM_r <- ration_brain %>% filter(ration_status_new %in% c("nr0", "r1000", "r817", "r635", "r425", "r270"))
+
+ration_brain_SEM_r <- ration_brain_SEM_r %>% 
+  filter (!is.na(Liking.for.biscuits)) %>% 
+  filter (!is.na(Liking.for.cake)) %>% 
+  filter (!is.na(Liking.for.cake.icing)) %>% 
+  filter (!is.na(Liking.for.croissant)) %>% 
+  filter (!is.na(Liking.for.dark.chocolate)) %>% 
+  filter (!is.na(Liking.for.cheesecake)) %>% 
+  filter (!is.na(Liking.for.ice.cream)) %>% 
+  filter (!is.na(Liking.for.jam)) %>% 
+  filter (!is.na(Liking.for.marzipan)) %>% 
+  filter (!is.na(Liking.for.milk.chocolate)) %>% 
+  filter (!is.na(Liking.for.sweet.foods)) %>% 
+  filter (!is.na(C.reactive.protein...Instance.0)) %>% 
+  filter (!is.na(Free_sugar)) %>% 
+  filter (!is.na(Total_sugar))
+
+ration_brain_SEM_r <- ration_brain_SEM_r %>% 
+  select(ration_status_new, Liking.for.biscuits , Liking.for.cake , Liking.for.cake.icing , Liking.for.croissant , Liking.for.dark.chocolate , Liking.for.cheesecake , Liking.for.ice.cream , Liking.for.jam , Liking.for.marzipan , Liking.for.milk.chocolate , Liking.for.sweet.foods, Free_sugar, Total_sugar, C.reactive.protein...Instance.0, Volume.of.grey.matter.in.Brain.Stem...Instance.2 , Volume.of.grey.matter.in.VI.Cerebellum..right....Instance.2 , Volume.of.grey.matter.in.VI.Cerebellum..left....Instance.2 , Volume.of.grey.matter.in.Paracingulate.Gyrus..right....Instance.2 , Volume.of.grey.matter.in.VIIIa.Cerebellum..right....Instance.2 , Volume.of.grey.matter.in.VIIb.Cerebellum..right....Instance.2 , Volume.of.grey.matter.in.VIIb.Cerebellum..left....Instance.2 , Volume.of.grey.matter.in.Heschl.s.Gyrus..includes.H1.and.H2...left....Instance.2 , Volume.of.grey.matter.in.X.Cerebellum..left....Instance.2 , Volume.of.grey.matter.in.Ventral.Striatum..left....Instance.2 , Volume.of.grey.matter.in.Crus.I.Cerebellum..left....Instance.2 , Volume.of.grey.matter.in.VIIIa.Cerebellum..left....Instance.2 , Volume.of.grey.matter.in.Crus.I.Cerebellum..right....Instance.2 , Volume.of.grey.matter.in.V.Cerebellum..left....Instance.2 , 
+  Volume.of.grey.matter.in.Temporal.Fusiform.Cortex..anterior.division..left....Instance.2 , Volume.of.grey.matter.in.X.Cerebellum..right....Instance.2 ,
+  Volume.of.grey.matter.in.Amygdala..left....Instance.2 , Volume.of.grey.matter.in.VIIb.Cerebellum..vermis....Instance.2 ,
+  Volume.of.grey.matter.in.X.Cerebellum..vermis....Instance.2 ,
+  Volume.of.grey.matter.in.Ventral.Striatum..right....Instance.2 ,
+  Volume.of.grey.matter.in.Parahippocampal.Gyrus..posterior.division..left....Instance.2 ,
+  Volume.of.grey.matter.in.Occipital.Fusiform.Gyrus..right....Instance.2 , 
+  Volume.of.grey.matter.in.Temporal.Fusiform.Cortex..posterior.division..left....Instance.2 ,
+  Volume.of.grey.matter.in.Planum.Polare..left....Instance.2 ,
+  Volume.of.grey.matter.in.Crus.II.Cerebellum..right....Instance.2 ,
+  Volume.of.grey.matter.in.Lateral.Occipital.Cortex..superior.division..right....Instance.2 , Volume.of.grey.matter.in.Occipital.Pole..left....Instance.2 ,
+  Volume.of.grey.matter.in.Amygdala..right....Instance.2 , Volume.of.grey.matter.in.VIIIa.Cerebellum..vermis....Instance.2 , 
+  Volume.of.grey.matter.in.Lateral.Occipital.Cortex..superior.division..left....Instance.2 , Volume.of.grey.matter.in.Occipital.Fusiform.Gyrus..left....Instance.2 , Volume.of.grey.matter.in.VI.Cerebellum..vermis....Instance.2 , Volume.of.grey.matter.in.Crus.II.Cerebellum..left....Instance.2 , Volume.of.grey.matter.in.Postcentral.Gyrus..left....Instance.2 , 
+  Volume.of.grey.matter.in.V.Cerebellum..right....Instance.2 , Volume.of.grey.matter.in.VIIIb.Cerebellum..vermis....Instance.2 , Volume.of.grey.matter.in.Cuneal.Cortex..right....Instance.2 , Volume.of.grey.matter.in.Angular.Gyrus..right....Instance.2 , Volume.of.grey.matter.in.I.IV.Cerebellum..right....Instance.2, depression, anxiety)
+
+ration_brain_SEM_r <- ration_brain_SEM_r %>%
+  mutate(ration_group = case_when(
+    ration_status_new == 'nr0' ~ "0",
+    ration_status_new == "r270" ~ "1",
+    ration_status_new == "r425" ~ "2",
+    ration_status_new == "r635" ~ "3",
+    ration_status_new == "r817" ~ "4",
+    ration_status_new == "r1000" ~ "5"
+  )) 
+## ration_brain_SEM_r consist of 55 continous column (11 food liking variables, 2 sugar intake variables, 1 inflammatory variable, 39 grey matter volume variables, and 2 disease outcome variable) and 1 categorical column (ration group)
