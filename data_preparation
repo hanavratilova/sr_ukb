@@ -1,4 +1,4 @@
-#subset dataset for complete obvservation of variables
+#subset dataset for SEM analysis
 ration_brain_SEM_r <- ration_brain %>% filter(ration_status_new %in% c("nr0", "r1000", "r817", "r635", "r425", "r270"))
 
 ration_brain_SEM_r <- ration_brain_SEM_r %>% 
